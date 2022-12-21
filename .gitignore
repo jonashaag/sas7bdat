@@ -1,0 +1,17 @@
+.hypothesis
+*.pyc
+*.pkl
+*.o
+*.so
+*.pkl
+*.html
+*.so
+*.dSYM
+*.log
+*.egg-info
+.idea/
+.fleet/
+test-files
+cython_debug
+build
+tmp
