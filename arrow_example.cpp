@@ -162,7 +162,6 @@ bool on_row(void *userdata, const uint8_t *buf, bool have_fast_space_offsets) {
         }
 
         if (len > 0) {
-          // todo faster if we make an encoder function ptr per file?
           if (fileinfo->encoding == encoding_ascii || fileinfo->encoding == encoding_utf_8) {
             builder->Append(std::string_view((char *)&buf[colinfo->offset], len));
           } else {

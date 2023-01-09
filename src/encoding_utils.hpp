@@ -125,7 +125,7 @@ static enum Encoding detect_windows_1252_variant(const uint8_t *s, size_t len) {
     while (ileft >= 8) {                                                                           \
       uint64_t c8;                                                                                 \
       _utf_8_converter_check_left(8);                                                              \
-      if (is_ascii(c8 = *(uint64_t *)s)) {                                                         \
+      if (is_ascii_8(c8 = *(uint64_t *)s)) {                                                       \
         *(uint64_t *)out = c8;                                                                     \
         out += 8;                                                                                  \
         left -= 8;                                                                                 \
