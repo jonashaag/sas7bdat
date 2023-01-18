@@ -731,11 +731,15 @@ void parser_deinit(struct Parser *parser) {
   }
 }
 
-size_t column_last_known_space_offset(const struct Parser *parser,
-                                      const struct ColumnInfo *colinfo) {
+size_t column_fast_max_length(const struct Parser *parser, const struct ColumnInfo *colinfo) {
+  // TODO(perf) optimize: 50% of cases within single cell max 4% faster
   assert2(colinfo->len < SIZE_MAX);
   assert2(colinfo->offset < SIZE_MAX - colinfo->len - 1);
-  size_t first_unknown = bitmap_get_last_bit(parser->is_space_byte, colinfo->offset,
-                                             colinfo->offset + colinfo->len, 0);
-  return first_unknown + (first_unknown != SIZE_MAX);
+  size_t first_unknown_byte = bitmap_get_last_bit(parser->is_space_byte, colinfo->offset,
+                                                  colinfo->offset + colinfo->len, 0);
+  if (first_unknown_byte == SIZE_MAX || first_unknown_byte < colinfo->offset) {
+    return 0;
+  } else {
+    return first_unknown_byte - colinfo->offset + 1;
+  }
 }

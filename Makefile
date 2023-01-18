@@ -9,3 +9,6 @@ fuzzer: ${FILES}
 
 bfuzzer: ${FILES}
 	${CXX} ${FUZZ_ARGS} fuzz-bitmap.cpp -o bfuzzer
+
+sas2parquet: ${FILES}
+	${CXX} -O3 -I . -std=c++17 -larrow -lparquet src/sas2parquet.cpp src/sas7bdat.cpp -o sas2parquet ${CFLAGS} ${LDFLAGS}

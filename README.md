@@ -16,6 +16,8 @@ Based on some public and private benchmarks, this library reaches ~ 300–500 MB
 
 ## Usage
 
+### `read_sas`
+
 Currently only the Pandas compatibility interface is considered stable:
 
 ```py
@@ -26,11 +28,20 @@ df = sas7bdat.pandas_compat.read_sas("myfile.sas7bdat")
 
 Options to `read_sas` are the same in [`pandas.read_sas`](https://pandas.pydata.org/docs/reference/api/pandas.read_sas.html).
 
-## Installation
+#### Installation
 
 ```
 cd python
 python setup.py install
+```
+
+## sas2parquet
+
+Non-Python program to convert SAS7BDAT to Parquet, needs Arrow C++:
+
+```
+make sas2parquet
+./sas2parquet input.sas7bdat output.parquet
 ```
 
 ## Roadmap
@@ -46,6 +57,9 @@ python setup.py install
 - New parsers:
   - Parsing directly to (Py)Arrow
   - Parsing directly to Parquet
+- Performance ideas:
+  - Try NumPy's masked arrays
+  - Cache Python objects, similar to PyArrow's Memo
 
 ## License
 

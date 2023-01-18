@@ -162,9 +162,10 @@ void parser_init(struct Parser *Parser, const struct ParserConfig *config);
 bool parse(struct Parser *parser);
 void parser_deinit(struct Parser *parser); // Not thread safe if children exist
 
-// ????????????????sssssssssssssssssssssssss
-//                 ^
-size_t column_last_known_space_offset(const struct Parser *, const struct ColumnInfo *);
+// .........????????????????sssssssssssssssssssssssss
+//          First unknown: ^
+// Max len: [--------------]
+size_t column_fast_max_length(const struct Parser *parser, const struct ColumnInfo *colinfo);
 
 static bool machine_is_little_endian() {
   int x = 1;

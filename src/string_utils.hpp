@@ -9,7 +9,7 @@
 #define iswhitespace16(x) (((x) & ((uint16_t)0xffff - (uint16_t)0x2020)) == 0)
 #define iswhitespace8(x) (((x) & ((uint8_t)0xff - (uint8_t)0x20)) == 0)
 
-size_t rstrip_whitespace(const uint8_t *s, size_t len) {
+static size_t rstrip_whitespace(const uint8_t *s, size_t len) {
   const uint8_t *ptr = s + len;
 
   if (len >= 8) {

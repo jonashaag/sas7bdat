@@ -3,6 +3,8 @@
 #include "assume.hpp"
 #include <string.h>
 
+// todo: use arrow bit_util?
+
 #define align64(x) ((x) & -64)
 #define aligned64(x) !((x) % 64)
 
